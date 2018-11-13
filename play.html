@@ -1,0 +1,93 @@
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="monicaqin">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>测试x5-playsinline扩展属性</title>
+  
+</head>
+
+<body>
+ 
+<div>
+<video id="test_video" src="movie/movie.mp4" controls="controls" autoplay="" style="width: 412px; height: 732px; display: block;"></video>
+</div>
+
+<div class="controlpanel" style="position:relative;top:-150px;left:50px;">
+	<div>
+		<input type="button" value="播放" onclick="testPlay();">
+	</div>
+
+	</div>
+	
+	
+	
+	
+	
+
+	<div>
+		<input type="button" value="显示在顶部" onclick="moveToTop();">
+		<input type="button" value="居中(默认)" onclick="moveToCenter();">
+		<input type="button" value="显示在底部" onclick="moveToBottm();">
+	</div>
+	<div>
+		<a href="http://info.3g.qq.com/g/s?aid=index&amp;g_ut=3&amp;g_f=23886">手腾网</a>
+	</div>
+
+
+<script type="text/javascript">
+	test_video.style.width = screen.width + "px";
+	test_video.style.height = screen.height + "px";
+</script>
+            
+
+<div>
+<canvas id="test">
+</canvas></div>
+
+
+<script type="text/javascript">
+test_video.addEventListener("timeupdate", function(){
+	if(test_video.currentTime > 2)
+	{
+		test_video.style.display = 'block';
+	}
+});
+
+function testPlay(){
+	var res = test_video.play();
+}
+
+
+window.onresize=function(){
+	//alert("haha");
+	test_video.style.width = screen.width;
+	test_video.style.height = screen.height;
+}
+
+
+function moveToTop(){
+	//test_video.style["object-position"]= "0px 0px"
+	var res = test_video.play();
+}
+
+function moveToCenter(){
+	test_video.style["object-position"]= ""
+}
+
+function moveToBottm(){
+	var offsetY = test_video.clientHeight - (test_video.clientWidth * test_video.videoHeight / test_video.videoWidth)
+	test_video.style["object-position"]= "0px " + offsetY + "px"
+}
+</script>
+         
+
+
+
+  
+
+
+</body></html>

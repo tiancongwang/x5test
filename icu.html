@@ -1,0 +1,132 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<script>
+// log to either console or <output> element
+var useConsoleLog = false;
+function log(s) {
+  if (useConsoleLog) {
+    console.log(s);
+  } else {
+    var o = document.getElementsByTagName("output")[0];
+    o.innerHTML += s + " <br>";
+  }
+}
+
+function log_error(s) {
+  log("<strong style='color:red'>" + s + "</strong>");
+}
+
+function check_method(prefix, name, obj) {
+  var supported = typeof obj[name] == "function";
+  if (supported)
+    log(prefix + name + "() = " + "Yes");
+  else
+    log_error(prefix + name + "() = " + (supported ? "Yes" : "NOT Supported"));
+}
+ 
+  // emit non-blocking beacon to record client-side event 
+  function reportEvent(event) {
+
+var array = ['2018-12-07 15:49:45', '2018-12-07 16:25:52'];
+array = array.sort(function compareFunction(item1, item2) {
+    item1.localeCompare(item2);
+});
+log(array);
+  }
+
+  // emit non-blocking beacon with session analytics as the page
+  // transitions to background state (Page Visibility API)
+  document.addEventListener('visibilitychange', function() {
+    if (document.visiblityState === 'hidden') {
+      var sessionData = buildSessionReport();
+      navigator.sendBeacon('/collector', sessionData);
+    }
+  });
+  
+    function reportEvent_unvalid(event) {
+    var data = JSON.stringify({
+      event: event,
+      time: performance.now()
+    });
+	//var data = "this is a beacon test"
+    //var str = navigator.sendBeacon('htsp://10.96.72.64:3000/test', data);
+	var resultDiv = document.getElementById("result_error_url");
+	try{
+		 var str = navigator.sendBeacon('htsp://tesly.qq.com/tesly/media/upload/x5Core//browser', data);
+		 //resultDiv.innerHTML += str;
+		 resultDiv.innerHTML += "请求已经被发送，用例FAIL"+"<br>";
+	}
+    catch(err){
+		//resultDiv.innerHTML += str;
+		resultDiv.innerHTML += "发送请求失败，PASS"+"<br>";
+	}
+  }
+  function reportEvent_overflow(event) {
+		var n = 65538; 
+		var data = new Array(n).join('X');
+		var resultDiv = document.getElementById("result_overflow");
+		var str = navigator.sendBeacon('http://tesly.qq.com/tesly/media/upload/x5Core//browser', data);
+		console.log(str)
+		if(str){
+		  resultDiv.innerHTML += "请求已经被发送，用例FAIL"+"<br>";
+		}
+		else{
+		   resultDiv.innerHTML += "发送请求失败，PASS"+"<br>";		
+		}
+  }
+  function check_beacon(ev) {
+  // Check Beacon support
+
+  log("<strong>Beacon interfaces</strong>");
+
+  if (navigator === undefined)
+    log_error("Beacon: navigator NOT defined in global context");
+  if (navigator.sendBeacon === undefined)
+    log_error("Beacon: navigator.sendBeacon NOT supported");
+
+  check_method("... navigator.", "sendBeacon", navigator);
+
+  // Check the worker's WorkerNavigation and sendBeacon() support
+  var myWorker = new Worker("worker-beacon.js");
+  
+myWorker.onmessage = function(e) {
+    // The worker checks support for some interfaces and returns the results
+    var msg = e.data;
+    var support = msg.substring((msg.length - 2), msg.length);
+    if (support.toString() === "No") 
+      log_error("... Worker: " + msg);
+    else
+      log("... Worker: " + msg);
+  };
+  myWorker.postMessage("prime the pump ...");
+}
+</script>
+
+</head><body>
+<p><b>测试用例1：</b>检查Beacon接口支持</p>
+<button onclick="check_beacon(event);">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出的结果应为YES
+<br>
+<output> </output>
+<br>
+<p><b>测试用例2：</b>localeCompare </p>
+<button onclick="reportEvent('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“请求已经被发送”
+<div id="result"><br></div>
+<br>
+
+<br>
+<p><b>测试用例3：</b>发送一个无效URL请求</p>
+
+ <button onclick="reportEvent_unvalid('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“发送请求失败,PASS”
+ <br>
+ <div id="result_error_url"><br></div>
+ <br>
+<p><b>测试用例4：</b>发送一个data溢出的请求</p>
+
+ <button onclick="reportEvent_overflow('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“发送请求失败,PASS”
+ <br>
+ <div id="result_overflow"><br></div>
+
+</body></html>

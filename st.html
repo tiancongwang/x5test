@@ -1,0 +1,25 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+// log to either console or <output> element
+<script>
+function start() {
+	o5=new AudioContext();
+	o119=new AnalyserNode(o5);
+	o385=o5.suspend();
+	o402=new AnalyserNode(o5,{maxDecibels:116});
+	o471=o119.connect(o402);
+	o708=o5.resume();
+	o708.then(function(v){});
+	o819=o5.close();
+	o819=null;o708=null;o119=null;o402=null;o5=null;
+	gc();gc();gc();gc();
+	location.reload();
+}
+</script>
+<body onload="start()"></body>
+</html>

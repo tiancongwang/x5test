@@ -44,9 +44,9 @@ var array = ['2018-12-07 15:49:45', '2018-12-07 16:25:52'];
 array = array.sort(function compareFunction(item1, item2) {
     item1.localeCompare(item2);
 });
-    var o = document.getElementsByTagName("result")[0];
+document.getElementById('boldStuff').innerHTML =
+    var o = document.getElementById("result");
     o.innerHTML += array + " <br>";
-log(res);
   }
 
 </script>
@@ -62,17 +62,5 @@ log(res);
 <div id="result"><br></div>
 <br>
 
-<br>
-<p><b>测试用例3：</b>发送一个无效URL请求</p>
-
- <button onclick="reportEvent_unvalid('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“发送请求失败,PASS”
- <br>
- <div id="result_error_url"><br></div>
- <br>
-<p><b>测试用例4：</b>发送一个data溢出的请求</p>
-
- <button onclick="reportEvent_overflow('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“发送请求失败,PASS”
- <br>
- <div id="result_overflow"><br></div>
 
 </body></html>

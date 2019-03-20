@@ -30,91 +30,35 @@ function check_method(prefix, name, obj) {
   // emit non-blocking beacon to record client-side event 
   function reportEvent(event) {
 
+//var array = ['2018-12-07 15:49:45', '2018-12-07 16:25:52'];
+//array = array.sort(function compareFunction(item1, item2) {
+//    item1.localeCompare(item2);
+//});
+var res = '1'.localeCompare('1');
+log(res);
+  }
+
+  function reportEvent1() {
+
 var array = ['2018-12-07 15:49:45', '2018-12-07 16:25:52'];
 array = array.sort(function compareFunction(item1, item2) {
     item1.localeCompare(item2);
 });
-var res = '1'.localeCompare('1');
-console.log('1'.localeCompare('1'))
+    var o = document.getElementsByTagName("result")[0];
+    o.innerHTML += array + " <br>";
 log(res);
   }
 
-  // emit non-blocking beacon with session analytics as the page
-  // transitions to background state (Page Visibility API)
-  document.addEventListener('visibilitychange', function() {
-    if (document.visiblityState === 'hidden') {
-      var sessionData = buildSessionReport();
-      navigator.sendBeacon('/collector', sessionData);
-    }
-  });
-  
-    function reportEvent_unvalid(event) {
-    var data = JSON.stringify({
-      event: event,
-      time: performance.now()
-    });
-	//var data = "this is a beacon test"
-    //var str = navigator.sendBeacon('htsp://10.96.72.64:3000/test', data);
-	var resultDiv = document.getElementById("result_error_url");
-	try{
-		 var str = navigator.sendBeacon('htsp://tesly.qq.com/tesly/media/upload/x5Core//browser', data);
-		 //resultDiv.innerHTML += str;
-		 resultDiv.innerHTML += "请求已经被发送，用例FAIL"+"<br>";
-	}
-    catch(err){
-		//resultDiv.innerHTML += str;
-		resultDiv.innerHTML += "发送请求失败，PASS"+"<br>";
-	}
-  }
-  function reportEvent_overflow(event) {
-		var n = 65538; 
-		var data = new Array(n).join('X');
-		var resultDiv = document.getElementById("result_overflow");
-		var str = navigator.sendBeacon('http://tesly.qq.com/tesly/media/upload/x5Core//browser', data);
-		console.log(str)
-		if(str){
-		  resultDiv.innerHTML += "请求已经被发送，用例FAIL"+"<br>";
-		}
-		else{
-		   resultDiv.innerHTML += "发送请求失败，PASS"+"<br>";		
-		}
-  }
-  function check_beacon(ev) {
-  // Check Beacon support
-
-  log("<strong>Beacon interfaces</strong>");
-
-  if (navigator === undefined)
-    log_error("Beacon: navigator NOT defined in global context");
-  if (navigator.sendBeacon === undefined)
-    log_error("Beacon: navigator.sendBeacon NOT supported");
-
-  check_method("... navigator.", "sendBeacon", navigator);
-
-  // Check the worker's WorkerNavigation and sendBeacon() support
-  var myWorker = new Worker("worker-beacon.js");
-  
-myWorker.onmessage = function(e) {
-    // The worker checks support for some interfaces and returns the results
-    var msg = e.data;
-    var support = msg.substring((msg.length - 2), msg.length);
-    if (support.toString() === "No") 
-      log_error("... Worker: " + msg);
-    else
-      log("... Worker: " + msg);
-  };
-  myWorker.postMessage("prime the pump ...");
-}
 </script>
 
 </head><body>
-<p><b>测试用例1：</b>检查Beacon接口支持</p>
-<button onclick="check_beacon(event);">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出的结果应为YES
+<p><b>测试用例：</b>'1'.localeCompare('1')</p>
+<button onclick="reportEvent();">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出的结果应为0
 <br>
 <output> </output>
 <br>
 <p><b>测试用例2：</b>localeCompare </p>
-<button onclick="reportEvent('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“请求已经被发送”
+<button onclick="reportEvent1()">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“请求已经被发送”
 <div id="result"><br></div>
 <br>
 

@@ -35,7 +35,7 @@ var day = 1;
 for (var i = 1970; i < 2010; i++) {
 	 for (var j = 1; j < 13; j++) {
 		for (var k = 1; k < 32; k++) {
- 			var day = new Date(year, j, k);
+ 			var day = new Date(i, j, k);
 			var srcStr, dstStr;
 			var yy = day.getFullYear();
 			if(yy<1900) yy = yy+1900;
@@ -43,7 +43,7 @@ for (var i = 1970; i < 2010; i++) {
 			//if(MM<10) MM = '0' + MM;
 			var dd = day.getDate();
 			//if(dd<10) dd = '0' + dd;
-			srcStr =year + "年" + j + "月" + k + "日 ";
+			srcStr =i + "年" + j + "月" + k + "日 ";
 			dstStr = yy + "年" + MM + "月" + dd + "日 ";
 
 			if (srcStr != dstStr) {

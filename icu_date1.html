@@ -44,13 +44,13 @@ for (var i = 0; i < 4; i++) {
 			//if(MM<10) MM = '0' + MM;
 			var dd = day.getDate();
 			//if(dd<10) dd = '0' + dd;
-			srcStr ="输入："+ year + "年" + j + "月" + k + "日 ";
-			dstStr ="输出："+ yy + "年" + MM + "月" + dd + "日 ";
+			srcStr =year + "年" + j + "月" + k + "日 ";
+			dstStr = yy + "年" + MM + "月" + dd + "日 ";
 
 			if (srcStr != dstStr) {
 			
-			log(srcStr);
-			log(dstStr);
+			log("输入："+ srcStr);
+			log("输出："+ dstStr);
 }
 		}
 	 

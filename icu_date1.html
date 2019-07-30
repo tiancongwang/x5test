@@ -1,0 +1,85 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<script>
+// log to either console or <output> element
+var useConsoleLog = false;
+function log(s) {
+  if (useConsoleLog) {
+    console.log(s);
+  } else {
+    var o = document.getElementsByTagName("output")[0];
+    o.innerHTML += s + " <br>";
+  }
+}
+
+function log_error(s) {
+  log("<strong style='color:red'>" + s + "</strong>");
+}
+
+function check_method(prefix, name, obj) {
+  var supported = typeof obj[name] == "function";
+  if (supported)
+    log(prefix + name + "() = " + "Yes");
+  else
+    log_error(prefix + name + "() = " + (supported ? "Yes" : "NOT Supported"));
+}
+ 
+  // emit non-blocking beacon to record client-side event 
+var test=0;
+  function reportEvent(event) {
+var year= 1985;
+var month = 1;
+var day = 1;
+for (var i = 0; i < 2; i++) {
+	year = year + i;
+	 for (var j = 0; j < 13; j++) {
+		for (var k = 0; k < 32; k++) {
+ 			var day = new Date(year, j, k);
+			var srcStr, dstStr;
+			var yy = day.getFullYear();
+			if(yy<1900) yy = yy+1900;
+			var MM = day.getMonth();
+			if(MM<10) MM = '0' + MM;
+			var dd = day.getDate();
+			if(dd<10) dd = '0' + dd;
+			srcStr ="输入："+ year + "年" + j + "月" + k + "日 ";
+			dstStr ="输出："+ yy + "年" + MM + "月" + dd + "日 ";
+			
+			log(srcStr);
+			log(dstStr);
+		}
+	 
+	}
+}
+  }
+
+</script>
+
+</head><body>
+<p><b>测试用例：</b>'1'.localeCompare('1')</p>
+<button onclick="check_beacon(event);">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出的结果应为0
+<br>
+<output> </output>
+<br>
+<p><b>测试用例2：</b>new Date(1989, 3, 16) </p>
+<button onclick="reportEvent('some event')">点击此按钮</button>&nbsp;&nbsp;预期：1989年03月16日”
+<div id="result"><br></div>
+<br>
+
+<br>
+<p><b>测试用例3：</b>发送一个无效URL请求</p>
+
+ <button onclick="reportEvent_unvalid('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“发送请求失败,PASS”
+ <br>
+ <div id="result_error_url"><br></div>
+ <br>
+<p><b>测试用例4：</b>发送一个data溢出的请求</p>
+
+ <button onclick="reportEvent_overflow('some event')">点击此按钮</button>&nbsp;&nbsp;预期：下方显示出“发送请求失败,PASS”
+ <br>
+ <div id="result_overflow"><br></div>
+
+</body></html>

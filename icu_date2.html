@@ -1,0 +1,55 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<script>
+// log to either console or <output> element
+var useConsoleLog = false;
+function log(s) {
+  if (useConsoleLog) {
+    console.log(s);
+  } else {
+    var o = document.getElementsByTagName("output")[0];
+    o.innerHTML += s + " <br>";
+  }
+}
+
+function log_error(s) {
+  log("<strong style='color:red'>" + s + "</strong>");
+}
+
+function check_method(prefix, name, obj) {
+  var supported = typeof obj[name] == "function";
+  if (supported)
+    log(prefix + name + "() = " + "Yes");
+  else
+    log_error(prefix + name + "() = " + (supported ? "Yes" : "NOT Supported"));
+}
+ 
+  // emit non-blocking beacon to record client-side event 
+  function reportEvent(event) {
+log("  &lt;p&gt;1，从2019年8月8日开始，在部分歌房内收到K币礼物也可积累奖励金（以歌房内的公告为准）。积累奖励金后，可直接使用奖励金兑换鲜花。&lt;/p&gt;&lt;p&gt;2，奖励金还可用于兑换鲜花/VIP/K币礼物/道具等物品，可前往“我的 - K币账户 - 奖励金”页面进行兑换，敬请关注。&lt;/p&gt;&lt;p&gt;3，签约用户所获K币礼物参照协议处理。&lt;/p&gt;   ");
+  }
+
+</script>
+
+</head><body>
+<br>
+<output> </output>
+<br>
+<p><b>测试用例：</b>test </p>
+<button onclick="reportEvent('some event')">点击此按钮</button>&nbsp;&nbsp;
+<div id="result"><br></div>
+<br>
+
+<br>
+
+ <br>
+ <div id="result_error_url"><br></div>
+ <br>
+
+ <br>
+ <div id="result_overflow"><br></div>
+
+</body></html>

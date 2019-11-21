@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+	<input id="url" type="text" width="100" style="padding: 5px; width: 500px;" value="https://kul.tom.vg/include.php?x=100"><br>
+	Random: <input type="checkbox" checked="checked" id="random">
+	<pre></pre>
+	<button>Start!</button>
+</body>
+
+<script type="text/javascript">
+document.querySelector('button').addEventListener('click', async function() {
+	let results = [];
+	let init = await navigator.storage.estimate();
+	let start = performance.now();
+	let interval = setInterval(async function() {
+		let est = await navigator.storage.estimate();
+		let diff = est.quota - init.quota;
+		if (results.length === 0 || results[results.length - 1].diff != diff) {
+			results.push({"diff": diff, "time": performance.now() - start});
+		}
+	}, 0);
+	let url = document.querySelector('#url').value;
+	if (document.querySelector('#random').checked) {
+		url += Math.random();
+	}
+	let w = window.open(url);
+	setTimeout(() => {
+		w.close();
+		clearInterval(interval);
+		document.querySelector('pre').textContent = JSON.stringify(results, null, 4);
+	}, 5000);
+});
+</script>
+</html>

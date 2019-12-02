@@ -10,16 +10,17 @@
 var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
 // Results below assume UTC timezone - your results may vary
 
-console.log(new Intl.DateTimeFormat('en-US').format(date));
+var res = new Intl.DateTimeFormat('en-US').format(date)
+console.log(res);
 // expected output: "12/20/2012"
 
-console.log(new Intl.DateTimeFormat('en-GB').format(date));
+//console.log(new Intl.DateTimeFormat('en-GB').format(date));
 // expected output: "20/12/2012"
 
 // Include a fallback language, in this case Indonesian
-console.log(new Intl.DateTimeFormat(['ban', 'id']).format(date));
+//console.log(new Intl.DateTimeFormat(['ban', 'id']).format(date));
 // expected output: "20/12/2012"
-document.getElementById("demo").innerHTML = new Intl.DateTimeFormat('en-US').format(date);
+document.getElementById("demo").innerHTML = res;
 </script>
 
 </body>

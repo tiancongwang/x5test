@@ -12,6 +12,16 @@ new Intl.PluralRules('ar-EG').select(0);
 var locales = ['ban', 'id-u-co-pinyin', 'de-ID'];
 var options = { localeMatcher: 'lookup' };
 console.log(Intl.PluralRules.supportedLocalesOf(locales, options).join(', '));
+
+var de = new Intl.PluralRules('de-DE');
+var usedOptions = de.resolvedOptions();
+
+usedOptions.locale;                // "de-DE"
+usedOptions.maximumFractionDigits; // 3
+usedOptions.minimumFractionDigits; // 0
+usedOptions.minimumIntegerDigits;  // 1
+usedOptions.pluralCategories;      // Array [ "one", "other" ]
+usedOptions.type;  
 </script>
 
 </body>

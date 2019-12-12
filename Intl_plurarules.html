@@ -8,16 +8,10 @@
 
 <script>
 new Intl.PluralRules('ar-EG').select(0);
-//console.log(res);
-// expected output: "12/20/2012"
 
-//console.log(new Intl.DateTimeFormat('en-GB').format(date));
-// expected output: "20/12/2012"
-
-// Include a fallback language, in this case Indonesian
-//console.log(new Intl.DateTimeFormat(['ban', 'id']).format(date));
-// expected output: "20/12/2012"
-//document.getElementById("demo").innerHTML = res;
+var locales = ['ban', 'id-u-co-pinyin', 'de-ID'];
+var options = { localeMatcher: 'lookup' };
+console.log(Intl.PluralRules.supportedLocalesOf(locales, options).join(', '));
 </script>
 
 </body>

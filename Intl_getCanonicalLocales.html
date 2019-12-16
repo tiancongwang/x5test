@@ -7,21 +7,12 @@
 <p id="demo"></p>
 
 <script>
-console.log(Intl.getCanonicalLocales('EN-US'));
 // expected output: Array ["en-US"]
 document.getElementById("demo").innerHTML = Intl.getCanonicalLocales('EN-US');
-console.log(Intl.getCanonicalLocales(['EN-US', 'Fr']));
+
 // expected output: Array ["en-US", "fr"]
 document.getElementById("demo").innerHTML += "<br/>";
 document.getElementById("demo").innerHTML = Intl.getCanonicalLocales(['EN-US', 'Fr']);
-try {
-  Intl.getCanonicalLocales('EN_US');
-document.getElementById("demo").innerHTML += "<br/>";
-document.getElementById("demo").innerHTML = Intl.getCanonicalLocales('EN_US');
-} catch (err) {
-  console.log(err);
-  // expected output: RangeError: invalid language tag: EN_US
-}
 
 </script>
 

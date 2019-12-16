@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h2>JavaScript new Date()</h2>
+<h2>Intl.getCanonicalLocales</h2>
 
 <p id="demo"></p>
 
@@ -12,7 +12,7 @@ document.getElementById("demo").innerHTML = Intl.getCanonicalLocales('EN-US');
 
 // expected output: Array ["en-US", "fr"]
 document.getElementById("demo").innerHTML += "<br/>";
-document.getElementById("demo").innerHTML = Intl.getCanonicalLocales(['EN-US', 'Fr']);
+document.getElementById("demo").innerHTML += Intl.getCanonicalLocales(['EN-US', 'Fr']);
 
 </script>
 

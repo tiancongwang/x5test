@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Intl.RelativeTimeFormat</h2>
+
+<p>expected output: pasado mañana</p>
+<p>expected output: 1 day ago</p>
+<p>expected output: yesterday</p>
+<p>expected output: [object Object]</p>
+
+<p>result:</p>
+<p id="demo"></p>
+
+<script>
+const rtf1 = new Intl.RelativeTimeFormat('en', { style: 'narrow' });
+
+//expected output: "in 3 qtrs."
+document.getElementById("demo").innerHTML = rtf1.format(3, 'quarter');
+document.getElementById("demo").innerHTML += "<br/>";
+
+//expected output: "1 day ago"
+document.getElementById("demo").innerHTML = rtf1.format(-1, 'day');
+document.getElementById("demo").innerHTML += "<br/>";
+
+const rtf2 = new Intl.RelativeTimeFormat('es', { numeric: 'auto' });
+//expected output: "pasado mañana"
+document.getElementById("demo").innerHTML = rtf2.format(2, 'day');
+document.getElementById("demo").innerHTML += "<br/>";
+
+//基本用法
+// Create a relative time formatter in your locale
+// with default values explicitly passed in.
+const rtf = new Intl.RelativeTimeFormat("en", {
+    localeMatcher: "best fit", // other values: "lookup"
+    numeric: "always", // other values: "auto"
+    style: "long", // other values: "short" or "narrow"
+});
+
+// Format relative time using negative value (-1).
+document.getElementById("demo").innerHTML += rtf.format(-1, "day");
+// > "1 day ago"
+document.getElementById("demo").innerHTML += "<br/>";
+
+//Using the auto option
+// Create a relative time formatter in your locale
+// with numeric: "auto" option value passed in.
+// Format relative time using negative value (-1).
+// > "yesterday"
+document.getElementById("demo").innerHTML += new Intl.RelativeTimeFormat("en", { numeric: "auto" }).format(-1, "day");
+document.getElementById("demo").innerHTML += "<br/>";
+
+//Using formatToParts
+// Format relative time using the day unit.
+// > [{ type: "literal", value: "yesterday"}]
+document.getElementById("demo").innerHTML += new Intl.RelativeTimeFormat("en", { numeric: "auto" }).formatToParts(-1, "day");
+document.getElementById("demo").innerHTML += "<br/>";
+
+</script>
+
+</body>
+</html>

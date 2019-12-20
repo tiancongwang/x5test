@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Intl.PluralRules</h2>
+
+<p>expected output: other</p>
+<p>expected output: zero</p>
+<p>expected output: other</p>
+
+<p>result:</p>
+<p id="demo"></p>
+
+<script>
+var pr = new Intl.PluralRules(); 
+
+document.getElementById("demo").innerHTML = pr.select(0);;
+document.getElementById("demo").innerHTML += "<br/>";
+
+//Using locales
+document.getElementById("demo").innerHTML += new Intl.PluralRules('ar-EG').select(0);;
+document.getElementById("demo").innerHTML += "<br/>";
+
+//Using options
+document.getElementById("demo").innerHTML += new Intl.PluralRules('en-US', { type: 'ordinal' }).select(0);
+document.getElementById("demo").innerHTML += "<br/>";
+
+</script>
+
+</body>
+</html>

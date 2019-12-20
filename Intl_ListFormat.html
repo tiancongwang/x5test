@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Intl.ListFormat</h2>
+
+<p>expected output: Motorcycle, Bus, and Car</p>
+
+<p>result:</p>
+<p id="demo"></p>
+
+<script>
+const vehicles = ['Motorcycle', 'Bus', 'Car'];
+const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' });
+
+document.getElementById("demo").innerHTML = formatter.format(vehicles);
+document.getElementById("demo").innerHTML += "<br/>";
+
+</script>
+
+</body>
+</html>

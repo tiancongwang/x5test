@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>new Date().getTimezoneOffset</h2>
+
+<p>expected output: 8</p>
+
+<p>result:</p>
+<p id="demo"></p>
+
+<script>
+var offset = new Date().getTimezoneOffset();
+console.log(offset);
+
+document.getElementById("demo").innerHTML = new Date().getTimezoneOffset();
+
+document.getElementById("demo").innerHTML += "<br/>";
+
+</script>
+
+</body>
+</html>

@@ -13,7 +13,7 @@
 <p id="demo"></p>
 
 <script>
-const rtf1 = new Intl.RelativeTimeFormat('en', { style: 'narrow' });
+const rtf1 = new Intl.RelativeTimeFormat('en');
 
 //expected output: "in 3 qtrs."
 document.getElementById("demo").innerHTML = rtf1.format(3, 'quarter');

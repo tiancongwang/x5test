@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Intl.Collator</h2>
+
+<p>expected output: Array ["a", "ä", "z"]</p>
+<p>expected output: -1</p>
+<p>expected output: -1</p>
+<p>expected output: 0</p>
+<p>expected output: id-u-co-pinyin,de-ID</p>
+<p>expected output: latn</p>
+
+<p>result:</p>
+<p id="demo"></p>
+
+<script>
+
+
+//基本用法
+document.getElementById("demo").innerHTML += new Intl.Collator().compare('a', 'c');
+document.getElementById("demo").innerHTML += "<br/>";
+
+</script>
+
+</body>
+</html>
